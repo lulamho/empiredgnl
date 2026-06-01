@@ -1,7 +1,6 @@
 import svgPaths from "./svg-5y69guem1p";
 import imgCoverPhoto from "./ffa43fd071fcd412e7eafd756fa5915bc9343f68.png";
-import imgProfilePicture from "../../assets/prototype/post-profile-detail.png";
-import imgProfilePicture1 from "../../assets/prototype/post-profile-other.png";
+import imgProfilePicture from "../../assets/prototype/create-story-profile.png";
 import imgVideoImage from "./e2e34c76235c831f4fa418191930138d4bc2d321.png";
 
 function Frame23() {
@@ -19,7 +18,7 @@ function Frame1() {
       <div className="content-stretch flex flex-col gap-[2px] items-start px-[12px] relative size-full">
         <div className="relative rounded-[133.333px] shrink-0 size-[64px]" data-name="Profile Picture">
           <div aria-hidden="true" className="absolute border-[2.667px] border-solid border-white inset-[-2.667px] pointer-events-none rounded-[136px]" />
-          <img alt="" className="absolute block inset-0 max-w-none size-full" height="64" src={imgProfilePicture} width="64" />
+          <img alt="" className="absolute block inset-0 max-w-none object-cover rounded-full size-full" height="64" src={imgProfilePicture} width="64" />
         </div>
         <Frame23 />
       </div>
@@ -137,7 +136,7 @@ function Frame2() {
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center p-[8px] relative size-full">
           <div className="relative shrink-0 size-[40px]" data-name="Profile Picture">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" height="40" src={imgProfilePicture1} width="40" />
+            <img alt="" className="absolute block inset-0 max-w-none object-cover rounded-full size-full" height="40" src={imgProfilePicture} width="40" />
           </div>
           <Frame3 />
         </div>
@@ -248,7 +247,7 @@ function Frame8() {
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center p-[8px] relative size-full">
           <div className="relative shrink-0 size-[40px]" data-name="Profile Picture">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" height="40" src={imgProfilePicture1} width="40" />
+            <img alt="" className="absolute block inset-0 max-w-none object-cover rounded-full size-full" height="40" src={imgProfilePicture} width="40" />
           </div>
           <Frame9 />
         </div>
@@ -359,7 +358,7 @@ function Frame14() {
       <div className="flex flex-row items-center size-full">
         <div className="content-stretch flex gap-[8px] items-center p-[8px] relative size-full">
           <div className="relative shrink-0 size-[40px]" data-name="Profile Picture">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" height="40" src={imgProfilePicture1} width="40" />
+            <img alt="" className="absolute block inset-0 max-w-none object-cover rounded-full size-full" height="40" src={imgProfilePicture} width="40" />
           </div>
           <Frame15 />
         </div>
