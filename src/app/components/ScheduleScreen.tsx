@@ -227,6 +227,22 @@ function CourseTabIcon() {
   );
 }
 
+function ScheduleTabIcon() {
+  return (
+    <svg aria-hidden="true" className="h-[19.115px] w-[17px]" fill="none" viewBox="0 0 17 19.1152">
+      <path d={svgPaths.p19883580} fill="currentColor" />
+    </svg>
+  );
+}
+
+function LiveTabIcon() {
+  return (
+    <svg aria-hidden="true" className="h-[15px] w-[18.519px]" fill="none" viewBox="0 0 18.519 15">
+      <path d={svgPaths.p2171e100} fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function ScheduleScreen() {
   const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<'week' | 'month'>('week');
@@ -313,8 +329,8 @@ export default function ScheduleScreen() {
       <div className="fixed bottom-[34px] left-0 right-0 mx-auto flex h-[54px] max-w-[393px] items-center border-t border-[#e5e5e5] bg-white p-1 z-50">
         <BottomTab icon={<CommunityTabIcon />} label="Cộng đồng" onClick={() => navigate('/')} />
         <BottomTab icon={<CourseTabIcon />} label="Khoá học" onClick={() => navigate('/courses')} />
-        <BottomTab active icon={<Calendar aria-hidden="true" size={22} strokeWidth={2} />} label="TKB" />
-        <BottomTab icon={<Video aria-hidden="true" size={22} strokeWidth={2} />} label="Live" onClick={() => navigate('/live')} />
+        <BottomTab active icon={<ScheduleTabIcon />} label="TKB" />
+        <BottomTab icon={<LiveTabIcon />} label="Live" onClick={() => navigate('/live')} />
         <BottomTab icon={<MoreHorizontal aria-hidden="true" size={22} strokeWidth={2} />} label="Khác" />
       </div>
 
