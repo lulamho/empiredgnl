@@ -122,7 +122,7 @@ function SubLessonList({ onOpenTest }: { onOpenTest: () => void }) {
           </button>
         ))}
       </div>
-      <div className="bg-white/35 flex flex-col px-3">
+      <div className="bg-white flex flex-col px-3">
         {rows.map((row) => (
           <button key={row.title} className="flex min-h-10 w-full items-center gap-2 py-2 text-left active:opacity-70" onClick={row.done ? undefined : onOpenTest}>
             <GraduationCap aria-hidden="true" className="shrink-0 text-[#f99d0d]" size={24} strokeWidth={2} />
