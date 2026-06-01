@@ -1,7 +1,7 @@
 import { BookOpen, Bookmark, ChevronDown, ChevronLeft, ChevronUp, Clock3, FileText, GraduationCap, Image, Info, PlayCircle, Send, Share2, Star, Users } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import imgCourseFlame from '../../assets/prototype/course-flame.svg';
+import imgCourseExperienceBadge from '../../assets/prototype/course-experience-badge.svg';
 import imgCourseTeacher from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumb from '../../assets/prototype/course-thumb-vsat.png';
 import imgReviewProfile from '../../assets/prototype/post-profile-detail.png';
@@ -117,7 +117,7 @@ function AboutContent() {
         <div className="flex flex-1 flex-col gap-1 min-w-0">
           <p className="font-medium leading-5 text-[14px] text-[#525252] whitespace-nowrap">Empire Team</p>
           <div className="bg-[#694206] flex gap-1 items-center rounded-[20px] py-1 pl-1 pr-2 w-fit">
-            <img alt="" className="size-4 shrink-0 object-contain" src={imgCourseFlame} />
+            <img alt="" className="size-4 shrink-0 object-contain" src={imgCourseExperienceBadge} />
             <p className="font-semibold leading-[14px] text-[11px] text-[#f99d0d] whitespace-nowrap">Hơn 10 năm kinh nghiệm</p>
           </div>
         </div>
