@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router';
-import imgCourseTeacher from '../../assets/prototype/course-teacher.png';
+import imgCourseTeam from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumbEnglish from '../../assets/prototype/course-thumb-english.png';
 import imgCourseThumbVsat from '../../assets/prototype/course-thumb-vsat.png';
-import imgFlame from '../../assets/prototype/course-flame.png';
+import imgFlame from '../../assets/prototype/course-flame.svg';
 import imgNavProfile from '../../assets/prototype/nav-profile.png';
-import imgStar from '../../assets/prototype/course-star.png';
+import imgStar from '../../assets/prototype/course-star.svg';
 import svgPaths from '../../imports/SanhChungMainScreen-2/svg-p6lq06vpnh';
 
 type CourseCardProps = {
@@ -26,7 +26,7 @@ function CourseCard({ compact = false, hot = false, image, onClick, price, ratin
       </div>
       <div className="flex flex-col gap-2 p-2">
         <div className="flex gap-1 items-center">
-          <img alt="" className="size-[24px] rounded-full" src={imgCourseTeacher} />
+          <img alt="" className="size-[24px] rounded-full object-cover" src={imgCourseTeam} />
           <p className="flex-1 text-[14px] leading-5 text-[#525252] truncate">{teacher}</p>
         </div>
         <div className="flex flex-col gap-0.5">

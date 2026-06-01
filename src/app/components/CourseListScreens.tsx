@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
-import imgCourseTeacher from '../../assets/prototype/course-teacher.png';
+import imgCourseTeam from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumb from '../../assets/prototype/course-thumb-vsat.png';
-import imgFlame from '../../assets/prototype/course-flame.png';
-import imgStar from '../../assets/prototype/course-star.png';
+import imgFlame from '../../assets/prototype/course-flame.svg';
+import imgStar from '../../assets/prototype/course-star.svg';
 import svgPaths from '../../imports/SanhChungMainScreen-2/svg-p6lq06vpnh';
 
 type CourseListItemProps = {
@@ -90,7 +90,7 @@ function CourseListItem({ hot = false, price, rating, teacher = 'Empire Team', t
       <div className="flex flex-1 flex-col gap-2 min-w-0 p-2">
         <div className="flex flex-col gap-2">
           <div className="flex gap-1 items-center min-w-0">
-            <img alt="" className="size-[24px] rounded-full shrink-0" src={imgCourseTeacher} />
+            <img alt="" className="size-[24px] rounded-full shrink-0 object-cover" src={imgCourseTeam} />
             <p className="flex-1 min-w-0 text-[14px] leading-5 text-[#525252] truncate">{teacher}</p>
           </div>
           <div className="flex flex-col gap-0.5 text-[16px] leading-6">

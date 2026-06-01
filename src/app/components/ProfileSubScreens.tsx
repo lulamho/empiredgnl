@@ -1,9 +1,9 @@
 import { BookOpen, CalendarDays, Check, ChevronDown, ChevronLeft, ChevronRight, Clock, Eye, Facebook, Mail, Phone, Timer, UserRound } from 'lucide-react';
 import { useNavigate } from 'react-router';
-import imgCourseTeacher from '../../assets/prototype/course-teacher.png';
+import imgCourseTeam from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumb from '../../assets/prototype/course-thumb-vsat.png';
 import imgNavProfile from '../../assets/prototype/nav-profile.png';
-import imgStar from '../../assets/prototype/course-star.png';
+import imgStar from '../../assets/prototype/course-star.svg';
 import svgPaths from '../../imports/SanhChungMainScreen-2/svg-p6lq06vpnh';
 
 function StatusBar() {
@@ -89,7 +89,7 @@ function ProfileCourseRow({ rating, teacher, title }: { rating: string; teacher:
       <img alt="" className="size-[88px] shrink-0 rounded object-cover" src={imgCourseThumb} />
       <div className="flex min-w-0 flex-1 flex-col gap-2 p-2">
         <div className="flex min-w-0 items-center gap-1">
-          <img alt="" className="size-6 shrink-0 rounded-full" src={imgCourseTeacher} />
+          <img alt="" className="size-6 shrink-0 rounded-full object-cover" src={imgCourseTeam} />
           <p className="min-w-0 flex-1 truncate text-[14px] leading-5 text-[#525252]">{teacher}</p>
         </div>
         <p className="line-clamp-2 text-[16px] font-semibold leading-6 text-[#171717]">{title}</p>
