@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router';
 import svgPaths from "../../imports/SanhChungMainScreen-2/svg-p6lq06vpnh";
 import imgCreateStoryProfile from "../../assets/prototype/create-story-profile.png";
 import imgLeaderboardAvatar1 from "../../assets/prototype/leaderboard-avatar-1.png";
+import imgLeaderboardAvatar2 from "../../assets/prototype/leaderboard-avatar-2.png";
+import imgLeaderboardAvatar3 from "../../assets/prototype/leaderboard-avatar-3.png";
 import imgNavProfile from "../../assets/prototype/nav-profile.png";
-import imgStoryProfile1 from "../../assets/prototype/story-profile-1.png";
-import imgStoryProfile2 from "../../assets/prototype/story-profile-2.png";
 import imgStory from "../../assets/prototype/story-bg-1.png";
 import imgStory1 from "../../assets/prototype/story-bg-2.png";
 import imgVideoImage from "../../imports/SanhChungMainScreen-2/e2e34c76235c831f4fa418191930138d4bc2d321.png";
@@ -141,7 +141,7 @@ export default function MainFeed() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#f99d0d] to-[#a964f7] opacity-30" />
             <div className="relative h-full flex flex-col justify-between p-2">
               <div className="size-[48px]">
-                <img alt="" className="size-full rounded-full" src={imgStoryProfile1} />
+                <img alt="" className="size-full rounded-full object-cover" src={imgLeaderboardAvatar2} />
               </div>
               <p className="font-semibold text-[14px] text-white">Tên học sinh</p>
             </div>
@@ -153,7 +153,7 @@ export default function MainFeed() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#f99d0d] to-[#a964f7] opacity-30" />
             <div className="relative h-full flex flex-col justify-between p-2">
               <div className="size-[48px]">
-                <img alt="" className="size-full rounded-full" src={imgStoryProfile2} />
+                <img alt="" className="size-full rounded-full object-cover" src={imgLeaderboardAvatar3} />
               </div>
               <p className="font-semibold text-[14px] text-white">Tên học sinh</p>
             </div>
