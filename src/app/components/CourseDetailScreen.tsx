@@ -1,4 +1,4 @@
-import { BookOpen, Bookmark, ChevronDown, ChevronLeft, ChevronUp, Clock3, FileText, GraduationCap, Image, Info, PlayCircle, Send, Share2, Star, Users } from 'lucide-react';
+import { BookOpen, Bookmark, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock3, FileText, GraduationCap, Image, Info, PlayCircle, Send, Share2, Star, Users } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import imgCourseExperienceBadge from '../../assets/prototype/course-experience-badge.svg';
@@ -52,53 +52,92 @@ function FloatingIcon({ children, label, onClick }: { children: React.ReactNode;
   );
 }
 
-function LessonStats({ progress = false }: { progress?: boolean }) {
+function LessonPill({ children, icon }: { children: React.ReactNode; icon: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between w-full">
-      <div className="flex gap-2 items-center">
-        <span className="flex gap-1 items-center text-[#f99d0d] text-[11px] leading-[14px]">
-          <PlayCircle aria-hidden="true" size={16} strokeWidth={2} />
-          6
-        </span>
-        <span className="flex gap-1 items-center text-[#f99d0d] text-[11px] leading-[14px]">
-          <FileText aria-hidden="true" size={16} strokeWidth={2} />
-          3
-        </span>
-        <span className="flex gap-1 items-center text-[#f99d0d] text-[11px] leading-[14px]">
-          <GraduationCap aria-hidden="true" size={16} strokeWidth={2} />
-          7
-        </span>
-      </div>
-      {progress && (
-        <div className="flex gap-1 items-center w-[130px]">
-          <div className="bg-[#e5e5e5] h-1 rounded-[20px] flex-1 overflow-hidden">
-            <div className="bg-[#f99d0d] h-full w-[65%]" />
-          </div>
-          <span className="text-[11px] text-[#171717] w-7 text-right">65%</span>
-        </div>
-      )}
+    <span className="flex min-h-7 items-center justify-center gap-0.5 rounded-[20px] bg-[#fef5e7] px-2 py-1 text-[#f99d0d]">
+      {icon}
+      <span className="text-[11px] leading-[14px] text-[#f99d0d]">{children}</span>
+    </span>
+  );
+}
+
+function LessonStats() {
+  return (
+    <div className="flex shrink-0 items-center justify-end gap-2">
+      <LessonPill icon={<GraduationCap aria-hidden="true" size={20} strokeWidth={2} />}>7</LessonPill>
+      <LessonPill icon={<PlayCircle aria-hidden="true" size={20} strokeWidth={2} />}>6</LessonPill>
+      <LessonPill icon={<FileText aria-hidden="true" size={20} strokeWidth={2} />}>3</LessonPill>
     </div>
   );
 }
 
-function LessonRow({ onClick, title, progress = false }: { onClick?: () => void; title: string; progress?: boolean }) {
-  const Component = onClick ? 'button' : 'div';
-
+function LessonRow({ onClick, progress = false, title }: { onClick?: () => void; progress?: boolean; title: string }) {
   return (
-    <Component className="bg-[#fafafa] flex flex-col gap-1 justify-center pl-8 pr-2 py-2 text-left w-full active:bg-[#f5f5f5]" onClick={onClick}>
-      <p className="text-[14px] leading-5 text-[#171717] truncate">{title}</p>
-      <LessonStats progress={progress} />
-    </Component>
+    <div className="bg-[#fafafa] flex gap-1 items-start pl-6 pr-2 py-2 text-left w-full">
+      <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <button className="w-full text-left active:opacity-70" onClick={onClick}>
+          <p className="text-[14px] leading-5 text-[#171717]">{title}</p>
+        </button>
+        {progress && (
+          <div className="flex items-center gap-1">
+            <div className="bg-[#e5e5e5] h-1 w-[100px] overflow-hidden rounded-[20px]">
+              <div className="bg-[#f99d0d] h-full w-[65%]" />
+            </div>
+            <span className="min-w-7 text-right text-[11px] leading-[14px] text-[#171717]">65%</span>
+          </div>
+        )}
+      </div>
+      <LessonStats />
+    </div>
   );
 }
 
-function SubjectRow({ onToggle, open = false, subject }: { onToggle: () => void; open?: boolean; subject: string }) {
+function SubjectRow({ count = 1, onToggle, open = false, subject }: { count?: number; onToggle: () => void; open?: boolean; subject: string }) {
   return (
     <button className="bg-white flex gap-1 items-center pl-3 pr-2 py-2 text-left w-full active:bg-[#fafafa]" onClick={onToggle}>
       <p className="flex-1 font-medium text-[14px] leading-5 text-[#171717] text-left">{subject}</p>
-      <p className="shrink-0 text-[14px] leading-5 text-[#525252] text-right">(1 bài học)</p>
+      <p className="shrink-0 text-[14px] leading-5 text-[#525252] text-right">({count} bài học)</p>
       {open ? <ChevronUp aria-hidden="true" size={20} strokeWidth={2} /> : <ChevronDown aria-hidden="true" size={20} strokeWidth={2} />}
     </button>
+  );
+}
+
+function SubLessonList({ onOpenTest }: { onOpenTest: () => void }) {
+  const rows = [
+    { done: true, title: 'Đề tự luyện số 1' },
+    { title: 'Đề tự luyện số 2' },
+    { title: 'Bài tập nâng cao số 3' },
+    { title: 'Đề kiểm tra nhanh số 4' },
+    { title: 'Phần luyện tập chuyên sâu số 5' },
+    { title: 'Bài tập tổng hợp số 6' },
+    { title: 'Đề thi thử số 7' },
+  ];
+
+  return (
+    <div className="bg-[#fef5e7] flex flex-col mx-3 w-[calc(100%-24px)]">
+      <div className="flex gap-6 px-3">
+        {['Bài kiểm tra', 'Video', 'Tài liệu'].map((tab) => (
+          <button key={tab} className={`min-h-10 py-2 text-[14px] font-medium leading-5 ${tab === 'Bài kiểm tra' ? 'border-b-2 border-[#f99d0d] text-[#f99d0d]' : 'text-[#171717]'}`}>
+            {tab}
+          </button>
+        ))}
+      </div>
+      <div className="bg-white/35 flex flex-col px-3">
+        {rows.map((row) => (
+          <button key={row.title} className="flex min-h-10 w-full items-center gap-2 py-2 text-left active:opacity-70" onClick={row.done ? undefined : onOpenTest}>
+            <GraduationCap aria-hidden="true" className="shrink-0 text-[#f99d0d]" size={24} strokeWidth={2} />
+            <span className="min-w-0 flex-1 text-[14px] font-medium leading-5 text-[#171717]">{row.title}</span>
+            {row.done ? (
+              <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-[#35c77b] text-white">
+                <Check aria-hidden="true" size={14} strokeWidth={2.4} />
+              </span>
+            ) : (
+              <ChevronRight aria-hidden="true" className="shrink-0 text-[#171717]" size={20} strokeWidth={2} />
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -282,8 +321,8 @@ export default function CourseDetailScreen() {
   const [activeTab, setActiveTab] = useState('Nội Dung');
   const [openSubjects, setOpenSubjects] = useState<Record<string, boolean>>({
     literature: true,
-    math: true,
-    english: true,
+    math: false,
+    english: false,
     physics: false,
     biology: false,
   });
@@ -346,10 +385,11 @@ export default function CourseDetailScreen() {
           <p className="flex-1 font-semibold text-[14px] leading-5 text-white">15 Đề Thực Chiến</p>
           <span className="text-white text-[20px] leading-none">−</span>
         </div>
-        <SubjectRow onToggle={() => toggleSubject('literature')} open={openSubjects.literature} subject="Ngữ văn" />
+        <SubjectRow count={2} onToggle={() => toggleSubject('literature')} open={openSubjects.literature} subject="Ngữ văn" />
         {openSubjects.literature && (
           <>
             <LessonRow onClick={() => navigate('/courses/vsat/lessons/ngu-van-1')} progress title="Chữa đề thực chiến V-SAT Ngữ Văn 1" />
+            <SubLessonList onOpenTest={() => navigate('/courses/vsat/lessons/ngu-van-1/tests/test-1')} />
             <LessonRow title="Chữa đề thực chiến V-SAT Ngữ Văn 2" />
           </>
         )}
