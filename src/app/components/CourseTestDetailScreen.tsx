@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router';
 import imgLeaderboardAvatar1 from '../../assets/prototype/leaderboard-avatar-1.png';
 import imgLeaderboardAvatar2 from '../../assets/prototype/leaderboard-avatar-2.png';
 import imgLeaderboardAvatar3 from '../../assets/prototype/leaderboard-avatar-3.png';
-import imgLeaderboardAvatarMe from '../../assets/prototype/leaderboard-avatar-me.png';
+import imgLeaderboardAvatarMe from '../../assets/prototype/nav-profile.png';
 import imgLeaderboardMedalBronze from '../../assets/prototype/leaderboard-medal-bronze.svg';
 import imgLeaderboardMedalGold from '../../assets/prototype/leaderboard-medal-gold.svg';
 import imgLeaderboardMedalSilver from '../../assets/prototype/leaderboard-medal-silver.svg';
