@@ -246,7 +246,7 @@ export default function SuKienChiTiet() {
   return (
     <div className="bg-[#f5f5f5] overflow-y-auto relative rounded-[24px] size-full" data-name="[Su Kien] Chi Tiet">
       <Container />
-      <div className="fixed bg-white h-[48px] left-0 top-[50px] w-full max-w-[393px] z-50" data-name="Mobile Nav">
+      <div className="fixed bg-white h-[48px] left-0 right-0 mx-auto top-[50px] w-full max-w-[393px] z-50" data-name="Mobile Nav">
         <div className="-translate-y-1/2 absolute left-[8px] overflow-clip size-[24px] top-1/2" data-name="Arrow Back">
           <div className="absolute inset-[9.78%_27.42%_9.78%_26.44%]" data-name="Vector">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 11.073 19.3075">
@@ -256,14 +256,14 @@ export default function SuKienChiTiet() {
         </div>
         <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] left-1/2 not-italic text-[#171717] text-[16px] text-center top-[12px] w-[313px]">Chi tiết sự kiện</p>
       </div>
-      <div className="fixed bg-white bottom-0 h-[34px] left-0 right-0 max-w-[393px] z-50" data-name="Home Indicator">
+      <div className="fixed bg-white bottom-0 h-[34px] left-0 right-0 mx-auto max-w-[393px] z-50" data-name="Home Indicator">
         <div className="-translate-x-1/2 absolute bottom-[8px] flex h-[5px] items-center justify-center left-1/2 w-[144px]">
           <div className="-scale-y-100 flex-none rotate-180">
             <div className="bg-black h-[5px] relative rounded-[100px] w-[144px]" data-name="Home Indicator" />
           </div>
         </div>
       </div>
-      <div className="fixed bg-white content-stretch flex flex-col h-[50px] items-start left-0 pt-[21px] top-0 w-full max-w-[393px] z-50" data-name="Status Bar - iPhone">
+      <div className="fixed bg-white content-stretch flex flex-col h-[50px] items-start left-0 right-0 mx-auto pt-[21px] top-0 w-full max-w-[393px] z-50" data-name="Status Bar - iPhone">
         <Frame />
       </div>
     </div>

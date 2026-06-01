@@ -20,7 +20,7 @@ export default function EventDetail() {
 
   return (
     <div
-      className="w-full h-screen overflow-y-auto"
+      className="relative mx-auto h-screen w-full max-w-[393px] overflow-y-auto bg-[#f5f5f5]"
       onClick={(e) => {
         const target = e.target as HTMLElement;
 
