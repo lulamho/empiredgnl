@@ -1,8 +1,41 @@
 import { useNavigate, useParams } from 'react-router';
 import { useState } from 'react';
-import imgProfilePicture from "../../assets/prototype/post-profile-detail.png";
+import imgProfilePicture from "../../assets/prototype/create-story-profile.png";
 import imgVideoImage from "../../imports/SanhChungPhanHoi/e2e34c76235c831f4fa418191930138d4bc2d321.png";
 import svgPaths from "../../imports/SanhChungPhanHoi/svg-hgyq32mpw8";
+import statusSvgPaths from "../../imports/SanhChungBaiVietChiTiet-3/svg-6zq1t9jcsb";
+
+function StatusBar() {
+  return (
+    <div className="sticky bg-white flex h-[50px] items-start left-0 pt-[21px] top-0 w-full z-50">
+      <div className="flex items-center justify-between w-full">
+        <div className="flex flex-1 items-center justify-center min-w-px pl-4 pr-1.5">
+          <p className="font-[590] leading-[22px] text-[17px] text-black text-center whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>9:41</p>
+        </div>
+        <div className="h-[10px] shrink-0 w-[124px]" />
+        <div className="flex flex-1 items-center justify-center gap-[7px] min-w-px pl-1.5 pr-4">
+          <div className="h-[12.226px] relative shrink-0 w-[19.2px]">
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 19.2 12.2264">
+              <path clipRule="evenodd" d={statusSvgPaths.p1e09e400} fill="black" fillRule="evenodd" />
+            </svg>
+          </div>
+          <div className="h-[12.328px] relative shrink-0 w-[17.142px]">
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17.1417 12.3283">
+              <path clipRule="evenodd" d={statusSvgPaths.p18b35300} fill="black" fillRule="evenodd" />
+            </svg>
+          </div>
+          <div className="h-[13px] relative shrink-0 w-[27.328px]">
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 27.328 13">
+              <rect height="12" opacity="0.35" rx="3.8" stroke="black" width="24" x="0.5" y="0.5" />
+              <path d={statusSvgPaths.p3bbd9700} fill="black" opacity="0.4" />
+              <rect fill="black" height="9" rx="2.5" width="21" x="2" y="2" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ReplyScreen() {
   const navigate = useNavigate();
@@ -11,16 +44,7 @@ export default function ReplyScreen() {
 
   return (
     <div className="bg-white overflow-auto relative size-full">
-      {/* Status Bar */}
-      <div className="sticky bg-white flex h-[50px] items-center justify-between left-0 px-4 pt-5 top-0 w-full z-50">
-        <p className="font-semibold text-[17px] text-black">9:41</p>
-        <div className="h-[10px] w-[124px]" />
-        <div className="flex gap-2 items-center">
-          <div className="text-black">📶</div>
-          <div className="text-black">📡</div>
-          <div className="text-black">🔋</div>
-        </div>
-      </div>
+      <StatusBar />
 
       {/* Mobile Nav */}
       <div className="sticky bg-white border-b border-[#e5e5e5] h-[48px] left-0 top-[50px] w-full z-40 flex items-center justify-center">
@@ -47,7 +71,7 @@ export default function ReplyScreen() {
             className="size-[40px] cursor-pointer active:opacity-50"
             onClick={() => navigate('/personal-feed')}
           >
-            <img alt="" className="size-full rounded-full" src={imgProfilePicture} />
+            <img alt="" className="size-full rounded-full object-cover" src={imgProfilePicture} />
           </div>
           <div className="flex-1">
             <p className="font-semibold text-[14px] text-[#171717]">Vân Anh</p>
