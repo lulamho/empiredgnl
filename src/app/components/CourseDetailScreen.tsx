@@ -72,12 +72,14 @@ function LessonStats() {
 }
 
 function LessonRow({ onClick, progress = false, title }: { onClick?: () => void; progress?: boolean; title: string }) {
+  const Component = onClick ? 'button' : 'div';
+
   return (
-    <div className="bg-[#fafafa] flex gap-1 items-start pl-6 pr-2 py-2 text-left w-full">
+    <Component className="bg-[#fafafa] flex gap-1 items-start pl-6 pr-2 py-2 text-left w-full active:bg-[#f5f5f5]" onClick={onClick}>
       <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <button className="w-full text-left active:opacity-70" onClick={onClick}>
+        <div className="w-full text-left">
           <p className="text-[14px] leading-5 text-[#171717]">{title}</p>
-        </button>
+        </div>
         {progress && (
           <div className="flex items-center gap-1">
             <div className="bg-[#e5e5e5] h-1 w-[100px] overflow-hidden rounded-[20px]">
@@ -88,7 +90,7 @@ function LessonRow({ onClick, progress = false, title }: { onClick?: () => void;
         )}
       </div>
       <LessonStats />
-    </div>
+    </Component>
   );
 }
 
@@ -326,6 +328,7 @@ export default function CourseDetailScreen() {
     physics: false,
     biology: false,
   });
+  const [isLiteratureLessonOpen, setIsLiteratureLessonOpen] = useState(false);
   const toggleSubject = (subject: string) => {
     setOpenSubjects((current) => ({ ...current, [subject]: !current[subject] }));
   };
@@ -388,8 +391,8 @@ export default function CourseDetailScreen() {
         <SubjectRow count={2} onToggle={() => toggleSubject('literature')} open={openSubjects.literature} subject="Ngữ văn" />
         {openSubjects.literature && (
           <>
-            <LessonRow onClick={() => navigate('/courses/vsat/lessons/ngu-van-1')} progress title="Chữa đề thực chiến V-SAT Ngữ Văn 1" />
-            <SubLessonList onOpenTest={() => navigate('/courses/vsat/lessons/ngu-van-1/tests/test-1')} />
+            <LessonRow onClick={() => setIsLiteratureLessonOpen((current) => !current)} progress title="Chữa đề thực chiến V-SAT Ngữ Văn 1" />
+            {isLiteratureLessonOpen && <SubLessonList onOpenTest={() => navigate('/courses/vsat/lessons/ngu-van-1/tests/test-1')} />}
             <LessonRow title="Chữa đề thực chiến V-SAT Ngữ Văn 2" />
           </>
         )}
