@@ -266,7 +266,7 @@ export default function MainFeed() {
           </div>
           <p className="font-medium text-[10px] text-black opacity-50">Khoá học</p>
         </button>
-        <div className="flex-1 flex flex-col gap-0.5 items-center py-1">
+        <button className="flex-1 flex flex-col gap-0.5 items-center py-1 active:opacity-60" onClick={() => navigate('/schedule')}>
           <div className="overflow-clip relative shrink-0 size-[24px]">
             <div className="absolute inset-[9.94%_14.58%_10.42%_14.58%]">
               <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17 19.1152">
@@ -275,8 +275,8 @@ export default function MainFeed() {
             </div>
           </div>
           <p className="font-medium text-[10px] text-black opacity-50">TKB</p>
-        </div>
-        <div className="flex-1 flex flex-col gap-0.5 items-center py-1">
+        </button>
+        <button className="flex-1 flex flex-col gap-0.5 items-center py-1 active:opacity-60" onClick={() => navigate('/live')}>
           <div className="overflow-clip relative shrink-0 size-[24px]">
             <div className="absolute inset-[18.75%_11.42%]">
               <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 18.519 15">
@@ -285,7 +285,7 @@ export default function MainFeed() {
             </div>
           </div>
           <p className="font-medium text-[10px] text-black opacity-50">Live</p>
-        </div>
+        </button>
         <div className="flex-1 flex flex-col gap-0.5 items-center py-1">
           <div className="overflow-clip relative shrink-0 size-[24px]">
             <div className="absolute inset-[41.67%_16.67%]">
