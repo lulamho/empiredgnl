@@ -2,51 +2,49 @@ import { useNavigate } from 'react-router';
 import imgCourseTeam from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumbEnglish from '../../assets/prototype/course-thumb-english.png';
 import imgCourseThumbVsat from '../../assets/prototype/course-thumb-vsat.png';
-import imgFlame from '../../assets/prototype/course-flame.svg';
 import imgNavProfile from '../../assets/prototype/nav-profile.png';
 import imgStar from '../../assets/prototype/course-star.svg';
 import svgPaths from '../../imports/SanhChungMainScreen-2/svg-p6lq06vpnh';
 
 type CourseCardProps = {
-  compact?: boolean;
-  hot?: boolean;
   image: string;
   onClick?: () => void;
-  price?: string;
   rating: string;
   teacher?: string;
   title: string;
 };
 
-function CourseCard({ compact = false, hot = false, image, onClick, price, rating, teacher = 'Empire Team', title }: CourseCardProps) {
+function CourseCard({ image, onClick, rating, teacher = 'Empire Team', title }: CourseCardProps) {
   return (
-    <button className={`bg-white overflow-hidden rounded text-left active:opacity-90 ${compact ? 'w-[188px] min-w-[188px]' : 'w-[268px] min-w-[268px]'}`} onClick={onClick}>
+    <button className="bg-white overflow-hidden rounded text-left active:opacity-90 w-full min-w-0" onClick={onClick}>
       <div className="aspect-[304/228] overflow-hidden w-full">
         <img alt="" className="size-full object-cover" src={image} />
       </div>
-      <div className="flex flex-col gap-2 p-2">
+      <div className="flex flex-col gap-2 p-2 min-h-[136px]">
         <div className="flex gap-1 items-center">
           <img alt="" className="size-[24px] rounded-full object-cover" src={imgCourseTeam} />
           <p className="flex-1 text-[14px] leading-5 text-[#525252] truncate">{teacher}</p>
         </div>
         <div className="flex flex-col gap-0.5">
           <p className="font-semibold leading-6 text-[16px] text-[#171717] line-clamp-2">{title}</p>
-          {price && <p className="font-bold leading-6 text-[16px] text-[#f99d0d]">{price}</p>}
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="mt-auto flex gap-2 items-center">
           <div className="border border-[#e5e5e5] flex gap-0.5 items-center rounded-[20px] px-2 py-1">
             <img alt="" className="size-4" src={imgStar} />
             <span className="font-medium text-[12px] leading-4 text-black">{rating}</span>
           </div>
-          {hot && (
-            <div className="bg-[#ee3a2f] flex gap-0.5 items-center rounded-[20px] px-2 py-1">
-              <img alt="" className="size-4" src={imgFlame} />
-              <span className="font-medium text-[12px] leading-4 text-white">Hot</span>
-            </div>
-          )}
         </div>
       </div>
     </button>
+  );
+}
+
+function FeaturedListIcon() {
+  return (
+    <svg aria-hidden="true" className="h-[15px] w-[19px]" fill="none" viewBox="0 0 19 15">
+      <rect height="13.5" rx="1.75" stroke="currentColor" strokeWidth="1.5" width="17.5" x="0.75" y="0.75" />
+      <path d="M5 4.75H14M5 7.5H14M5 10.25H11.5" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
+    </svg>
   );
 }
 
@@ -92,7 +90,14 @@ function StatusBar() {
 
 export default function CourseScreen() {
   const navigate = useNavigate();
-  const categories = ['Tất cả khoá học', 'Luyện thi đánh giá năng lực', 'Luyện thi TNPT', 'Đại học môn Toán', 'Tiếng Anh chuyên sâu', 'Bài thi trắc nghiệm'];
+  const courses = [
+    { image: imgCourseThumbVsat, rating: '4.9', title: 'Đánh giá năng lực V-SAT...' },
+    { image: imgCourseThumbEnglish, rating: '4.7', title: 'Chương trình Toán - Lý - Hóa nâng cao' },
+    { image: imgCourseThumbVsat, rating: '4.8', title: 'Khóa luyện thi đại học tổng hợp 5 môn' },
+    { image: imgCourseThumbVsat, rating: '4.6', title: 'Luyện tập tiếng Anh chuyên sâu - IELTS' },
+    { image: imgCourseThumbVsat, rating: '4.6', title: 'Luyện tập tiếng Anh chuyên sâu - IELTS' },
+    { image: imgCourseThumbVsat, rating: '4.6', title: 'Luyện tập tiếng Anh chuyên sâu - IELTS' },
+  ];
 
   return (
     <div className="bg-[#fafafa] overflow-auto relative size-full">
@@ -113,61 +118,41 @@ export default function CourseScreen() {
       </div>
 
       <main className="pb-[110px]">
-        <div className="p-2">
-          <div className="bg-white rounded-[50px] w-full flex gap-2 items-center px-3 py-2">
-            <div className="overflow-clip relative shrink-0 size-[24px]">
-              <div className="absolute inset-[14.1%_14.18%_14.26%_14.18%]">
-                <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17.192 17.1923">
-                  <path d={svgPaths.p35993800} fill="#737373" />
-                </svg>
-              </div>
-            </div>
-            <p className="flex-1 font-normal text-[#737373] text-[14px]">Tìm kiếm khoá học</p>
-          </div>
-        </div>
-
-        <section className="flex flex-col gap-2 px-4 pb-4 pt-2">
-          <h2 className="font-semibold leading-7 text-[20px] text-[#171717]">Danh mục</h2>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className="border border-[#171717] min-h-10 rounded-[50px] px-3 py-2 text-[14px] leading-5 text-[#171717] active:bg-white"
-                onClick={() => {
-                  if (category === 'Tất cả khoá học') {
-                    navigate('/courses/all');
-                  }
-                }}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        <section className="flex flex-col gap-2 px-4 pb-6">
-          <div className="flex items-center">
-            <h2 className="flex-1 font-semibold leading-7 text-[20px] text-[#171717]">
-              <span className="text-[#f99d0d]">6</span> khoá học của tôi
-            </h2>
-            <button className="flex gap-1 items-center px-2 py-1 active:opacity-60" onClick={() => navigate('/courses/my')}>
-              <span className="font-semibold text-[14px] leading-5 text-[#f99d0d]">Tất cả</span>
-              <span className="text-[#f99d0d] text-[20px] leading-5">›</span>
+        <section className="flex flex-col gap-2 p-3">
+          <div className="flex h-12 items-center rounded-[50px] bg-white p-1">
+            <button className="flex min-h-10 flex-1 items-center justify-center rounded-[50px] bg-[#fef5e7] px-2 py-1 text-[14px] font-medium leading-5 text-[#f99d0d]">
+              Khoá học của tôi
+            </button>
+            <button className="flex min-h-10 flex-1 items-center justify-center rounded-[50px] px-2 py-1 text-[14px] font-medium leading-5 text-black/50" onClick={() => navigate('/courses/all')}>
+              Tất Cả
             </button>
           </div>
-          <div className="flex gap-3 overflow-x-auto -mx-4 px-4 pb-1">
-            <CourseCard image={imgCourseThumbVsat} onClick={() => navigate('/courses/vsat')} rating="4.9" title="Đánh giá năng lực V-SAT" />
-            <CourseCard image={imgCourseThumbEnglish} onClick={() => navigate('/courses/vsat')} rating="4.7" title="Chương trình Toán - Lý - Hóa nâng cao" />
-            <CourseCard image={imgCourseThumbVsat} onClick={() => navigate('/courses/vsat')} rating="4.8" title="Chương trình luyện thi đại học toàn diện" />
+
+          <div className="flex gap-2 items-start">
+            <button aria-label="Danh mục" className="flex size-10 shrink-0 items-center justify-center rounded-[20px] bg-[#f99d0d] text-white active:opacity-75">
+              <FeaturedListIcon />
+            </button>
+            <div className="bg-white rounded-[50px] flex min-w-0 flex-1 gap-1 items-center p-2">
+              <div className="overflow-clip relative shrink-0 size-[24px]">
+                <div className="absolute inset-[14.1%_14.18%_14.26%_14.18%]">
+                  <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 17.192 17.1923">
+                    <path d={svgPaths.p35993800} fill="#737373" />
+                  </svg>
+                </div>
+              </div>
+              <p className="flex-1 font-normal text-[#737373] text-[14px] leading-5 truncate">Tìm kiếm khoá học</p>
+            </div>
           </div>
         </section>
 
-        <section className="flex flex-col gap-2 px-4 pb-6">
-          <h2 className="font-semibold leading-7 text-[20px] text-[#171717]">Khoá học nổi bật</h2>
-          <div className="flex gap-3 overflow-x-auto -mx-4 px-4 pb-1">
-            <CourseCard compact hot image={imgCourseThumbVsat} onClick={() => navigate('/courses/vsat')} price="1.250.000đ" rating="4.9" title="Tổ hợp 6 môn kiến thức - Nền tảng THPT" />
-            <CourseCard compact image={imgCourseThumbVsat} onClick={() => navigate('/courses/vsat')} price="1.450.000đ" rating="4.8" title="Chương trình luyện thi đại học toàn diện" />
-            <CourseCard compact image={imgCourseThumbEnglish} onClick={() => navigate('/courses/vsat')} price="1.300.000đ" rating="4.7" teacher="Phoenix Crew" title="Bồi dưỡng kiến thức nâng cao THPT" />
+        <section className="flex flex-col gap-2 px-3 pb-4">
+          <h2 className="font-semibold leading-7 text-[20px] text-[#171717]">
+            <span className="text-[#f99d0d]">6</span> khoá học của tôi
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            {courses.map((course, index) => (
+              <CourseCard key={`${course.title}-${index}`} {...course} onClick={() => navigate('/courses/vsat')} />
+            ))}
           </div>
         </section>
       </main>
