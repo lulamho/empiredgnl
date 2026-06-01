@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router';
 import svgPaths from "../../imports/SanhChungMainScreen-2/svg-p6lq06vpnh";
 import imgCreateStoryProfile from "../../assets/prototype/create-story-profile.png";
+import imgLeaderboardAvatar1 from "../../assets/prototype/leaderboard-avatar-1.png";
 import imgNavProfile from "../../assets/prototype/nav-profile.png";
-import imgPostProfileOther from "../../assets/prototype/post-profile-other.png";
-import imgPostProfileVanAnh from "../../assets/prototype/post-profile-van-anh.png";
 import imgStoryProfile1 from "../../assets/prototype/story-profile-1.png";
 import imgStoryProfile2 from "../../assets/prototype/story-profile-2.png";
 import imgStory from "../../assets/prototype/story-bg-1.png";
@@ -175,7 +174,7 @@ export default function MainFeed() {
                   navigate('/personal-feed');
                 }}
               >
-                <img alt="" className="size-full rounded-full" src={postId === 1 ? imgPostProfileVanAnh : imgPostProfileOther} />
+                <img alt="" className="size-full rounded-full object-cover" src={postId === 1 ? imgCreateStoryProfile : imgLeaderboardAvatar1} />
               </div>
               <div className="flex-1">
                 <p className="font-semibold text-[14px] text-[#171717]">
