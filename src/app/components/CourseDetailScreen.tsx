@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router';
 import imgCourseExperienceBadge from '../../assets/prototype/course-experience-badge.svg';
 import imgCourseTeacher from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumb from '../../assets/prototype/course-thumb-vsat.png';
-import imgReviewProfile from '../../assets/prototype/post-profile-detail.png';
+import imgReviewProfile1 from '../../assets/prototype/leaderboard-avatar-2.png';
+import imgReviewProfile2 from '../../assets/prototype/leaderboard-avatar-1.png';
+import imgReviewProfile3 from '../../assets/prototype/create-story-profile.png';
+import imgReviewProfile4 from '../../assets/prototype/leaderboard-avatar-3.png';
 
 function StatusBar({ solid = false }: { solid?: boolean }) {
   return (
@@ -210,21 +213,25 @@ function DiscussionComposer() {
 
 const reviewItems = [
   {
+    avatar: imgReviewProfile1,
     name: 'Lê Mai An',
     time: '1 ngày trước',
     text: 'Khóa học rất tốt, giáo viên nhiệt tình. Tôi đã cải thiện được điểm HSA từ 650 lên 850 chỉ sau 2 tháng học. Đặc biệt là phần luyện đề rất hay, giúp tôi làm quen với format đề thi thực tế.',
   },
   {
+    avatar: imgReviewProfile2,
     name: 'Trần Văn Bình',
     time: '3 ngày trước',
     text: 'Nội dung khóa học rất chi tiết và dễ hiểu, phù hợp với những người mới bắt đầu. Các bài tập thực hành giúp tôi nhớ kiến thức lâu hơn.',
   },
   {
+    avatar: imgReviewProfile3,
     name: 'Nguyễn Thị Hồng',
     time: '5 ngày trước',
     text: 'Giáo viên thân thiện và luôn sẵn sàng giải đáp thắc mắc. Tôi cảm thấy tự tin hơn rất nhiều khi bước vào kỳ thi, nhờ có khóa học này.',
   },
   {
+    avatar: imgReviewProfile4,
     name: 'Phạm Quang Huy',
     time: '1 tuần trước',
     text: 'Phương pháp học tập hiện đại, có nhiều tài liệu tham khảo hữu ích. Khóa học đã giúp tôi nâng cao kỹ năng làm bài và quản lý thời gian hiệu quả hơn.',
@@ -241,11 +248,11 @@ function RatingStars() {
   );
 }
 
-function ReviewCard({ name, text, time }: { name: string; text: string; time: string }) {
+function ReviewCard({ avatar, name, text, time }: { avatar: string; name: string; text: string; time: string }) {
   return (
     <article className="bg-white flex flex-col gap-2 p-2 rounded-xl w-full">
       <div className="flex gap-2 items-start w-full">
-        <img alt="" className="rounded-full size-8 shrink-0 object-cover" src={imgReviewProfile} />
+        <img alt="" className="rounded-full size-8 shrink-0 object-cover" src={avatar} />
         <div className="flex flex-1 flex-col min-w-0">
           <p className="font-semibold leading-5 text-[14px] text-[#171717]">{name}</p>
           <div className="flex gap-2 items-center w-full">
