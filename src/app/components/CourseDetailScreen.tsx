@@ -1,6 +1,22 @@
-import { BookOpen, Bookmark, Check, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Clock3, FileText, GraduationCap, Image, Info, PlayCircle, Send, Share2, Star, Users } from 'lucide-react';
+import { BookOpen, Clock3, GraduationCap, Image, Info, Send, Star, Users } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import imgArrowBackIcon from '../../assets/prototype/course-detail-icons/arrow-back.svg';
+import imgBookIcon from '../../assets/prototype/course-detail-icons/book.svg';
+import imgBookmarkIcon from '../../assets/prototype/course-detail-icons/bookmark.svg';
+import imgCheckIcon from '../../assets/prototype/course-detail-icons/check.svg';
+import imgChevronDownIcon from '../../assets/prototype/course-detail-icons/chevron-down.svg';
+import imgChevronRightIcon from '../../assets/prototype/course-detail-icons/chevron-right.svg';
+import imgChevronUpIcon from '../../assets/prototype/course-detail-icons/chevron-up.svg';
+import imgClockIcon from '../../assets/prototype/course-detail-icons/clock.svg';
+import imgDocsIcon from '../../assets/prototype/course-detail-icons/docs.svg';
+import imgMinusIcon from '../../assets/prototype/course-detail-icons/minus.svg';
+import imgPlayIcon from '../../assets/prototype/course-detail-icons/play.svg';
+import imgPlusIcon from '../../assets/prototype/course-detail-icons/plus.svg';
+import imgShareIcon from '../../assets/prototype/course-detail-icons/share.svg';
+import imgStarIcon from '../../assets/prototype/course-detail-icons/star.svg';
+import imgStudentIcon from '../../assets/prototype/course-detail-icons/student.svg';
+import imgStudentRowIcon from '../../assets/prototype/course-detail-icons/student-row.svg';
 import imgCourseExperienceBadge from '../../assets/prototype/course-experience-badge.svg';
 import imgCourseTeacher from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumb from '../../assets/prototype/course-thumb-vsat.png';
@@ -54,7 +70,7 @@ function FloatingIcon({ children, label, onClick }: { children: React.ReactNode;
 
 function LessonPill({ children, icon }: { children: React.ReactNode; icon: React.ReactNode }) {
   return (
-    <span className="flex min-h-7 items-center justify-center gap-0.5 rounded-[20px] bg-[#fef5e7] px-2 py-1 text-[#f99d0d]">
+    <span className="flex min-h-7 items-center justify-center gap-0.5 rounded-[20px] bg-white px-2 py-1 text-[#f99d0d]">
       {icon}
       <span className="text-[11px] leading-[14px] text-[#f99d0d]">{children}</span>
     </span>
@@ -64,9 +80,9 @@ function LessonPill({ children, icon }: { children: React.ReactNode; icon: React
 function LessonStats() {
   return (
     <div className="flex shrink-0 items-center justify-end gap-2">
-      <LessonPill icon={<GraduationCap aria-hidden="true" size={20} strokeWidth={2} />}>7</LessonPill>
-      <LessonPill icon={<PlayCircle aria-hidden="true" size={20} strokeWidth={2} />}>6</LessonPill>
-      <LessonPill icon={<FileText aria-hidden="true" size={20} strokeWidth={2} />}>3</LessonPill>
+      <LessonPill icon={<img alt="" className="size-5 shrink-0" src={imgStudentIcon} />}>7</LessonPill>
+      <LessonPill icon={<img alt="" className="size-5 shrink-0" src={imgPlayIcon} />}>6</LessonPill>
+      <LessonPill icon={<img alt="" className="size-5 shrink-0" src={imgDocsIcon} />}>3</LessonPill>
     </div>
   );
 }
@@ -75,7 +91,8 @@ function LessonRow({ onClick, progress = false, title }: { onClick?: () => void;
   const Component = onClick ? 'button' : 'div';
 
   return (
-    <Component className="bg-[#fafafa] flex gap-1 items-start pl-6 pr-2 py-2 text-left w-full active:bg-[#f5f5f5]" onClick={onClick}>
+    <Component className="bg-[#fafafa] flex gap-1 items-start pl-6 pr-2 py-2 text-left w-full active:bg-[#f5f5f5] relative" onClick={onClick}>
+      <span className="absolute bottom-4 left-0 top-4 w-0.5 bg-[#f99d0d]" />
       <div className="flex min-w-0 flex-1 flex-col gap-1">
         <div className="w-full text-left">
           <p className="text-[14px] leading-5 text-[#171717]">{title}</p>
@@ -96,10 +113,10 @@ function LessonRow({ onClick, progress = false, title }: { onClick?: () => void;
 
 function SubjectRow({ count = 1, onToggle, open = false, subject }: { count?: number; onToggle: () => void; open?: boolean; subject: string }) {
   return (
-    <button className="bg-white flex gap-1 items-center pl-3 pr-2 py-2 text-left w-full active:bg-[#fafafa]" onClick={onToggle}>
+    <button className="bg-[#fef5e7] flex gap-1 items-center pl-3 pr-2 py-2 text-left w-full active:bg-[#fff7ee]" onClick={onToggle}>
       <p className="flex-1 font-medium text-[14px] leading-5 text-[#171717] text-left">{subject}</p>
       <p className="shrink-0 text-[14px] leading-5 text-[#525252] text-right">({count} bài học)</p>
-      {open ? <ChevronUp aria-hidden="true" size={20} strokeWidth={2} /> : <ChevronDown aria-hidden="true" size={20} strokeWidth={2} />}
+      <img alt="" className="size-6 shrink-0" src={open ? imgChevronUpIcon : imgChevronDownIcon} />
     </button>
   );
 }
@@ -116,25 +133,23 @@ function SubLessonList({ onOpenTest }: { onOpenTest: () => void }) {
   ];
 
   return (
-    <div className="bg-[#fef5e7] flex flex-col mx-3 w-[calc(100%-24px)]">
-      <div className="flex gap-6 px-3">
+    <div className="flex flex-col items-start px-3 py-2 w-full">
+      <div className="bg-white flex gap-6 px-3 w-full">
         {['Bài kiểm tra', 'Video', 'Tài liệu'].map((tab) => (
           <button key={tab} className={`min-h-10 py-2 text-[14px] font-medium leading-5 ${tab === 'Bài kiểm tra' ? 'border-b-2 border-[#f99d0d] text-[#f99d0d]' : 'text-[#171717]'}`}>
             {tab}
           </button>
         ))}
       </div>
-      <div className="bg-white flex flex-col px-3">
+      <div className="bg-white flex flex-col px-3 w-full">
         {rows.map((row) => (
           <button key={row.title} className="flex min-h-10 w-full items-center gap-2 py-2 text-left active:opacity-70" onClick={row.done ? undefined : onOpenTest}>
-            <GraduationCap aria-hidden="true" className="shrink-0 text-[#f99d0d]" size={24} strokeWidth={2} />
+            <img alt="" className="size-6 shrink-0" src={imgStudentRowIcon} />
             <span className="min-w-0 flex-1 text-[14px] font-medium leading-5 text-[#171717]">{row.title}</span>
             {row.done ? (
-              <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-[#35c77b] text-white">
-                <Check aria-hidden="true" size={14} strokeWidth={2.4} />
-              </span>
+              <img alt="" className="size-6 shrink-0" src={imgCheckIcon} />
             ) : (
-              <ChevronRight aria-hidden="true" className="shrink-0 text-[#171717]" size={20} strokeWidth={2} />
+              <img alt="" className="size-6 shrink-0" src={imgChevronRightIcon} />
             )}
           </button>
         ))}
@@ -338,14 +353,14 @@ export default function CourseDetailScreen() {
       <StatusBar solid={isScrolled} />
       <div className={`fixed top-[50px] left-0 right-0 mx-auto max-w-[393px] flex items-center justify-between p-2 w-full z-40 ${isScrolled ? 'bg-white' : 'bg-transparent'}`}>
         <FloatingIcon label="Quay lại" onClick={() => navigate('/courses')}>
-          <ChevronLeft aria-hidden="true" size={20} strokeWidth={2.4} />
+          <img alt="" className="size-5" src={imgArrowBackIcon} />
         </FloatingIcon>
         <div className="flex gap-4">
           <FloatingIcon label="Lưu">
-            <Bookmark aria-hidden="true" size={18} strokeWidth={2.2} />
+            <img alt="" className="size-5" src={imgBookmarkIcon} />
           </FloatingIcon>
           <FloatingIcon label="Chia sẻ">
-            <Share2 aria-hidden="true" size={18} strokeWidth={2.2} />
+            <img alt="" className="size-5" src={imgShareIcon} />
           </FloatingIcon>
         </div>
       </div>
@@ -359,16 +374,16 @@ export default function CourseDetailScreen() {
         <div className="flex items-center justify-between">
           <div className="flex gap-3 items-center">
             <div className="flex gap-1 items-center">
-              <BookOpen aria-hidden="true" className="text-[#f99d0d]" size={20} strokeWidth={2} />
+              <img alt="" className="size-5 shrink-0" src={imgBookIcon} />
               <span className="font-medium text-[14px] leading-5 text-[#171717]">12 Bài học</span>
             </div>
             <div className="flex gap-1 items-center">
-              <Clock3 aria-hidden="true" className="text-[#f99d0d]" size={20} strokeWidth={2} />
+              <img alt="" className="size-5 shrink-0" src={imgClockIcon} />
               <span className="font-medium text-[14px] leading-5 text-[#171717]">30p/ buổi</span>
             </div>
           </div>
           <div className="border border-[#e5e5e5] flex gap-0.5 items-center rounded-[20px] px-2 py-1">
-            <Star aria-hidden="true" className="fill-[#f99d0d] text-[#f99d0d]" size={20} strokeWidth={1.8} />
+            <img alt="" className="size-5 shrink-0" src={imgStarIcon} />
             <span className="font-medium text-[14px] leading-5 text-black">4.9</span>
           </div>
         </div>
@@ -386,7 +401,7 @@ export default function CourseDetailScreen() {
       <main className="flex flex-col items-center overflow-hidden py-2 pb-[42px]">
         <div className="bg-[#f99d0d] flex gap-1 items-center pl-3 pr-2 py-3 w-full">
           <p className="flex-1 font-semibold text-[14px] leading-5 text-white">15 Đề Thực Chiến</p>
-          <span className="text-white text-[20px] leading-none">−</span>
+          <img alt="" className="size-6 shrink-0" src={imgMinusIcon} />
         </div>
         <SubjectRow count={2} onToggle={() => toggleSubject('literature')} open={openSubjects.literature} subject="Ngữ văn" />
         {openSubjects.literature && (
@@ -414,7 +429,7 @@ export default function CourseDetailScreen() {
         {openSubjects.biology && <LessonRow title="Chữa đề thực chiến V-SAT Sinh Học" />}
         <div className="bg-[#f99d0d] flex gap-1 items-center pl-3 pr-2 py-3 w-full">
           <p className="flex-1 font-semibold text-[14px] leading-5 text-white">5 Đề Tham Khảo</p>
-          <span className="text-white text-[24px] leading-none">+</span>
+          <img alt="" className="size-6 shrink-0" src={imgPlusIcon} />
         </div>
       </main>
       )}
