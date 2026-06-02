@@ -80,9 +80,9 @@ function LessonPill({ children, icon }: { children: React.ReactNode; icon: React
 function LessonStats() {
   return (
     <div className="flex shrink-0 items-center justify-end gap-2">
-      <LessonPill icon={<img alt="" className="size-5 shrink-0" src={imgStudentIcon} />}>7</LessonPill>
-      <LessonPill icon={<img alt="" className="size-5 shrink-0" src={imgPlayIcon} />}>6</LessonPill>
-      <LessonPill icon={<img alt="" className="size-5 shrink-0" src={imgDocsIcon} />}>3</LessonPill>
+      <LessonPill icon={<img alt="" className="h-[14px] w-[17px] shrink-0" src={imgStudentIcon} />}>7</LessonPill>
+      <LessonPill icon={<img alt="" className="size-4 shrink-0" src={imgPlayIcon} />}>6</LessonPill>
+      <LessonPill icon={<img alt="" className="h-4 w-3 shrink-0" src={imgDocsIcon} />}>3</LessonPill>
     </div>
   );
 }
@@ -116,7 +116,9 @@ function SubjectRow({ count = 1, onToggle, open = false, subject }: { count?: nu
     <button className="bg-[#fef5e7] flex gap-1 items-center pl-3 pr-2 py-2 text-left w-full active:bg-[#fff7ee]" onClick={onToggle}>
       <p className="flex-1 font-medium text-[14px] leading-5 text-[#171717] text-left">{subject}</p>
       <p className="shrink-0 text-[14px] leading-5 text-[#525252] text-right">({count} bài học)</p>
-      <img alt="" className="size-6 shrink-0" src={open ? imgChevronUpIcon : imgChevronDownIcon} />
+      <span className="flex size-6 shrink-0 items-center justify-center">
+        <img alt="" className="h-[7px] w-[12px]" src={open ? imgChevronUpIcon : imgChevronDownIcon} />
+      </span>
     </button>
   );
 }
@@ -149,7 +151,9 @@ function SubLessonList({ onOpenTest }: { onOpenTest: () => void }) {
             {row.done ? (
               <img alt="" className="size-6 shrink-0" src={imgCheckIcon} />
             ) : (
-              <img alt="" className="size-6 shrink-0" src={imgChevronRightIcon} />
+              <span className="flex size-6 shrink-0 items-center justify-center">
+                <img alt="" className="h-[12px] w-[7px]" src={imgChevronRightIcon} />
+              </span>
             )}
           </button>
         ))}
@@ -401,7 +405,9 @@ export default function CourseDetailScreen() {
       <main className="flex flex-col items-center overflow-hidden py-2 pb-[42px]">
         <div className="bg-[#f99d0d] flex gap-1 items-center pl-3 pr-2 py-3 w-full">
           <p className="flex-1 font-semibold text-[14px] leading-5 text-white">15 Đề Thực Chiến</p>
-          <img alt="" className="size-6 shrink-0" src={imgMinusIcon} />
+          <span className="flex size-6 shrink-0 items-center justify-center">
+            <img alt="" className="h-0.5 w-[13px]" src={imgMinusIcon} />
+          </span>
         </div>
         <SubjectRow count={2} onToggle={() => toggleSubject('literature')} open={openSubjects.literature} subject="Ngữ văn" />
         {openSubjects.literature && (
@@ -429,7 +435,9 @@ export default function CourseDetailScreen() {
         {openSubjects.biology && <LessonRow title="Chữa đề thực chiến V-SAT Sinh Học" />}
         <div className="bg-[#f99d0d] flex gap-1 items-center pl-3 pr-2 py-3 w-full">
           <p className="flex-1 font-semibold text-[14px] leading-5 text-white">5 Đề Tham Khảo</p>
-          <img alt="" className="size-6 shrink-0" src={imgPlusIcon} />
+          <span className="flex size-6 shrink-0 items-center justify-center">
+            <img alt="" className="size-[13px]" src={imgPlusIcon} />
+          </span>
         </div>
       </main>
       )}
