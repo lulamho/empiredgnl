@@ -1,3 +1,5 @@
+import { ChevronDown, ChevronRight, X } from 'lucide-react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import imgCourseTeam from '../../assets/prototype/live-detail-team.png';
 import imgCourseThumbEnglish from '../../assets/prototype/course-thumb-english.png';
@@ -48,6 +50,51 @@ function FeaturedListIcon() {
   );
 }
 
+function CategoryDropdown({ onClose }: { onClose: () => void }) {
+  const rows = [
+    { label: 'Khoá Học Backend', active: true, expanded: true },
+    { child: true, label: 'PHP' },
+    { child: true, label: 'Java' },
+    { child: true, label: '.Net' },
+    { label: 'Khoá Học Front End' },
+    { label: 'Khoá Học Design' },
+    { label: 'Khoá Học Testing' },
+    { inset: true, label: 'Phân Tích Yêu Cầu' },
+    { inset: true, label: 'Kiểm Thử Tự Động' },
+    { inset: true, label: 'Kiểm Thử Bảo Mật', regular: true },
+  ];
+
+  return (
+    <div className="absolute left-3 top-[166px] z-40 flex h-[300px] max-h-[300px] w-[313px] flex-col overflow-hidden rounded-[20px] bg-white/85 px-3 shadow-[0_4px_16px_rgba(0,0,0,0.08)] backdrop-blur-md">
+      <div className="flex items-center gap-2 py-2 pl-3 pr-1">
+        <p className="min-w-0 flex-1 text-[16px] font-semibold leading-6 text-[#171717]">Danh Mục Khoá Học</p>
+        <button aria-label="Đóng danh mục" className="flex size-6 items-center justify-center rounded-full active:bg-black/5" onClick={onClose}>
+          <X aria-hidden="true" size={20} strokeWidth={2} />
+        </button>
+      </div>
+
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
+        {rows.map((row) => (
+          <button
+            key={row.label}
+            className={`flex min-h-10 w-full items-center gap-0.5 py-2 pr-1 text-left active:opacity-70 ${
+              row.active ? 'rounded-xl bg-[#fef5e7] pl-3 text-[#f99d0d]' : row.child ? 'pl-6 text-[#171717]' : row.inset ? 'pl-4 text-[#171717]' : 'pl-3 text-[#171717]'
+            }`}
+          >
+            <span className={`min-w-0 flex-1 text-[14px] leading-5 ${row.regular || row.child ? 'font-normal' : 'font-medium'}`}>{row.label}</span>
+            {row.expanded ? (
+              <ChevronDown aria-hidden="true" className="shrink-0 text-[#f99d0d]" size={20} strokeWidth={2} />
+            ) : !row.child ? (
+              <ChevronRight aria-hidden="true" className="shrink-0 text-[#171717]" size={20} strokeWidth={2} />
+            ) : null}
+          </button>
+        ))}
+        <div className="absolute right-0 top-0 h-[174px] w-1 rounded-[20px] bg-black/10" />
+      </div>
+    </div>
+  );
+}
+
 function StatusBar() {
   return (
     <div className="sticky bg-white content-stretch flex flex-col h-[50px] items-start left-0 pt-[21px] top-0 w-full z-50">
@@ -90,6 +137,7 @@ function StatusBar() {
 
 export default function CourseScreen() {
   const navigate = useNavigate();
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const courses = [
     { image: imgCourseThumbVsat, rating: '4.9', title: 'Đánh giá năng lực V-SAT...' },
     { image: imgCourseThumbEnglish, rating: '4.7', title: 'Chương trình Toán - Lý - Hóa nâng cao' },
@@ -129,7 +177,7 @@ export default function CourseScreen() {
           </div>
 
           <div className="flex gap-2 items-start">
-            <button aria-label="Danh mục" className="flex size-10 shrink-0 items-center justify-center rounded-[20px] bg-[#f99d0d] text-white active:opacity-75">
+            <button aria-label="Danh mục" className="flex size-10 shrink-0 items-center justify-center rounded-[20px] bg-[#f99d0d] text-white active:opacity-75" onClick={() => setIsCategoryOpen((current) => !current)}>
               <FeaturedListIcon />
             </button>
             <div className="bg-white rounded-[50px] flex min-w-0 flex-1 gap-1 items-center p-2">
@@ -144,6 +192,8 @@ export default function CourseScreen() {
             </div>
           </div>
         </section>
+
+        {isCategoryOpen && <CategoryDropdown onClose={() => setIsCategoryOpen(false)} />}
 
         <section className="flex flex-col gap-2 px-3 pb-4">
           <h2 className="font-semibold leading-7 text-[20px] text-[#171717]">
